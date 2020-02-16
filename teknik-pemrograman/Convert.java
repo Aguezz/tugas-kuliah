@@ -2,16 +2,6 @@ import java.util.Scanner;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-class Currentcy {
-    String name;
-    Double nominal;
-
-    void init(String name_, Double nominal_) {
-        name = name_;
-        nominal = nominal_;
-    }
-}
-
 class Convert {
     private static Scanner input = new Scanner(System.in);
 
@@ -20,43 +10,14 @@ class Convert {
         System.out.flush();
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         Convert.clearScreen();
 
         int money;
-        Currentcy currentcy;
-
-        Currentcy real = new Currentcy();
-        Currentcy dollar = new Currentcy();
-        real.init("Real", 3655.57);
-        dollar.init("Dollar", 13651.74);
-        System.out.println("Konversi Mata Uang");
+        final double riyal = 3651.53;
+        System.out.println("Konversi Rupiah ke Riyal");
 
         while (true) {
-            System.out.println("------------------");
-            System.out.println("[1] Dollar");
-            System.out.println("[2] Real");
-            System.out.println("------------------");
-            System.out.println("Pilih konversi mata uang [1/2]:");
-
-            String currentcyString = input.nextLine();
-
-            if (currentcyString.equals("1")) {
-                currentcy = dollar;
-                break;
-            } else if (currentcyString.equals("2")) {
-                currentcy = real;
-                break;
-            } else {
-                Convert.clearScreen();
-                System.out.println("Format angka salah!");
-            }
-        }
-
-        Convert.clearScreen();
-
-        while (true) {
-            System.out.println("Konversi ke " + currentcy.name);
             System.out.println("Masukkan jumlah nominal uang dalam rupiah :");
 
             String moneyString = input.nextLine();
@@ -88,9 +49,9 @@ class Convert {
 
         NumberFormat nf = NumberFormat.getInstance(new Locale("id", "ID"));
         String prettyRupiah = nf.format(money);
-        String prettyCurrentcy = nf.format(money / currentcy.nominal);
+        String prettyRiyal = nf.format((int) (money / riyal));
 
-        System.out.println("Rp " + prettyRupiah + " dalam " + currentcy.name + " adalah‎ " + prettyCurrentcy + " " + currentcy.name);
+        System.out.format("\nRp %s dalam Riyal adalah‎ %s Riyal\n", prettyRupiah, prettyRiyal);
 
         input.close();
     }
