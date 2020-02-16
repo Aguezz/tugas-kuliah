@@ -13,7 +13,13 @@ class LabaRugi {
             String numString = input.nextLine();
             try {
                 num = Integer.parseInt(numString);
-                break;
+
+                if (num > 0) {
+                    break;
+                } else {
+                    LabaRugi.clearScreen();
+                    System.out.println("Angka yang diinputkan minimal 0!");
+                }
             } catch (NumberFormatException e) {
                 LabaRugi.clearScreen();
                 System.out.println("Format angka tidak valid!");
