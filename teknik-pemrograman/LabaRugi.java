@@ -1,6 +1,4 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.lang.Math;
 import java.text.NumberFormat;
 import java.util.Locale;
 
@@ -12,12 +10,13 @@ class LabaRugi {
 
         while (true) {
             System.out.println(message);
+            String numString = input.nextLine();
             try {
-                num = input.nextInt();
+                num = Integer.parseInt(numString);
                 break;
-            } catch (InputMismatchException e) {
+            } catch (NumberFormatException e) {
                 LabaRugi.clearScreen();
-                System.out.print("Format angka tidak valid!");
+                System.out.println("Format angka tidak valid!");
             }
         }
 
@@ -31,36 +30,51 @@ class LabaRugi {
 
     public static void main(String[] args) {
         LabaRugi.clearScreen();
+        
         int omzet = 50000000;
-        double pengeluaran;
-
+        double omzetHarian = omzet / 30;
         int gajiKaryawan = 1500000;
-        int biayaOperasional = 160000; 
-        double pajak = 1.5/100; 
+        double gajiKaryawanHarian = gajiKaryawan / 30;
+        int biayaOperasionalHarian = 160000;
+        double pajak = 1.5 / 100;
+        double pajakHarian = omzet * pajak / 30;
 
         int jumlahKaryawan = inputInt("Jumlah karyawan :");
         int jumlahHari = inputInt("\nJumlah hari untuk biaya operasional :");
 
-        int totalGajiKaryawan = gajiKaryawan * jumlahKaryawan;
-        int totalBiayaOperasional = biayaOperasional * jumlahHari;
+        double totalOmzet = omzetHarian * jumlahHari;
+        totalOmzet = jumlahHari % 30 == 0 ? Math.ceil(jumlahHari/30) * omzet : totalOmzet;
 
-        double bulan = Math.ceil(jumlahHari / 30) + 1;
+        double totalGajiKaryawan = gajiKaryawanHarian * jumlahHari * jumlahKaryawan;
+        double totalBiayaOperasional = biayaOperasionalHarian * jumlahHari;
 
-        double totalPajak = bulan * pajak * omzet;
+        double totalPajak = pajakHarian * jumlahHari;
 
-        pengeluaran = totalGajiKaryawan + totalBiayaOperasional + totalPajak;
+        double pengeluaran = totalGajiKaryawan + totalBiayaOperasional + totalPajak;
+
+        double penghasilanBersih = totalOmzet - pengeluaran;
 
         NumberFormat nf = NumberFormat.getInstance(new Locale("id", "ID"));
 
         System.out.println("\n---------------------------------------------");
+        System.out.println("| Omzet/hari              : Rp " + nf.format(omzetHarian));
+        System.out.println("| Omzet/bulan             : Rp " + nf.format(omzet));
+        System.out.println("|\n| Gaji karyawan/hari      : Rp " + nf.format(gajiKaryawanHarian));
+        System.out.println("| Gaji karyawan/bulan     : Rp " + nf.format(gajiKaryawan));
+        System.out.println("|\n| Biaya operasional/hari  : Rp " + nf.format(biayaOperasionalHarian));
+        System.out.println("| Biaya operasional/bulan : Rp " + nf.format(biayaOperasionalHarian * 30));
+        System.out.println("|\n| Pajak/hari              : Rp " + nf.format(pajakHarian));
+        System.out.println("| Pajak/bulan             : Rp " + nf.format(pajakHarian * 30));
+        System.out.println("---------------------------------------------");
+        System.out.println("| Total omzet             : Rp " + nf.format(totalOmzet));
         System.out.println("| Total gaji karyawan     : Rp " + nf.format(totalGajiKaryawan));
         System.out.println("| Total biaya operasional : Rp " + nf.format(totalBiayaOperasional));
         System.out.println("| Total pajak             : Rp " + nf.format(totalPajak));
-        System.out.println("| Total Pengeluaran       : Rp " + nf.format((int) pengeluaran));
-        System.out.println("| Hasil bersih            : Rp " + nf.format(omzet - ((int) pengeluaran)));
+        System.out.println("| Total pengeluaran       : Rp " + nf.format((int) pengeluaran));
+        System.out.println("|\n| Penghasilan bersih      : Rp " + nf.format(penghasilanBersih));
         System.out.println("---------------------------------------------");
 
-        if (pengeluaran <= omzet * 7/10) {
+        if (pengeluaran <= totalOmzet * 7 / 10) {
             System.out.println("\nKesimpulan : Laba/untung");
         } else {
             System.out.println("\nKesimpulan : Rugi");
