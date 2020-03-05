@@ -18,11 +18,7 @@ class Convert {
     private static Scanner input = new Scanner(System.in);
 
     static void clearScreen() {
-<<<<<<< HEAD
         System.out.print("\033[H\033[2J\n");
-=======
-        System.out.println("\033[H\033[2J");
->>>>>>> f06442d2d590d14ac6d2d2ab8987b8695ed17ac6
         System.out.flush();
     }
 
