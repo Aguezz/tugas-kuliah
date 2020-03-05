@@ -15,24 +15,22 @@ class Currency {
 }
 
 class Convert {
-    private static Scanner input = new Scanner(System.in);
+    static int rupiah;
+    static Scanner input = new Scanner(System.in);
+    static Currency currencySelected;
+    static Currency[] currencies = {
+        new Currency(1, "Dollar", 13693.75),
+        new Currency(2, "Riyal", 3651.53),
+        new Currency(3, "Euro", 14831.50),
+    };
 
     static void clearScreen() {
         System.out.print("\033[H\033[2J\n");
         System.out.flush();
     }
 
-    public static void main(String[] args) {
-        Convert.clearScreen();
-
-        Currency currencies[] = new Currency[3];
-        currencies[0] = new Currency(1, "Dollar", 13693.75);
-        currencies[1] = new Currency(2, "Riyal", 3651.53);
-        currencies[2] = new Currency(3, "Euro", 14831.50);
-
-        int rupiah;
-        Currency currencySelected;
-
+    void selectCurrency() {
+        clearScreen();
         System.out.println("Konversi Mata Uang");
 
         outerLoop: {
@@ -50,7 +48,7 @@ class Convert {
                     int currencyId = Integer.parseInt(currencyIdString);
 
                     if (currencyId > currencies.length || currencyId <= 0) {
-                        Convert.clearScreen();
+                        clearScreen();
                         System.out.println("Format angka salah!");
                     } else {
                         for (Currency currency : currencies) {
@@ -61,13 +59,15 @@ class Convert {
                         }
                     }
                 } catch (NumberFormatException e) {
-                    Convert.clearScreen();
+                    clearScreen();
                     System.out.println("Format angka tidak valid!");
                 }
             }
         }
+    }
 
-        Convert.clearScreen();
+    void inputRupiah() {
+        clearScreen();
 
         while (true) {
             System.out.println("Masukkan jumlah nominal uang dalam rupiah :");
@@ -78,17 +78,19 @@ class Convert {
                 rupiah = Integer.parseInt(rupiahString);
 
                 if (rupiah <= 0) {
-                    Convert.clearScreen();
+                    clearScreen();
                     System.out.println("Angka yang diinputkan minimal 0");
                 } else {
                     break;
                 }
             } catch (NumberFormatException e) {
-                Convert.clearScreen();
+                clearScreen();
                 System.out.println("\nFormat angka salah!");
             }
         }
+    }
 
+    void hitung() {
         NumberFormat nf = NumberFormat.getInstance(new Locale("id", "ID"));
         String prettyRupiah = nf.format(rupiah);
         String prettyRiyal = nf.format(rupiah / currencySelected.value);
@@ -96,5 +98,13 @@ class Convert {
         System.out.format("\nRp %s dalam %s adalah‎ %s\n", prettyRupiah, currencySelected.name, prettyRiyal);
 
         input.close();
+    }
+
+    public static void main(String[] args) {
+        Convert c = new Convert();
+
+        c.selectCurrency();
+        c.inputRupiah();
+        c.hitung();
     }
 }

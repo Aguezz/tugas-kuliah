@@ -17,7 +17,7 @@ public class Anggur {
             System.out.format(
                 "| %-8s | %-13s |%n",
                 i,
-                new DecimalFormat("#.0000").format(anggur)
+                (anggur < 1 ? "0" : "") + new DecimalFormat("#.0000").format(anggur)
             );
 
             anggur = anggur * 9/10;
