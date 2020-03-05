@@ -10,8 +10,9 @@ public class MenuSederhana {
         System.out.println("[1] Nama Diri");
         System.out.println("[2] Hobi Diri");
         System.out.println("[3] Makanan Favorit");
-        System.out.println("[4] Keluar");
-        System.out.print("Masukkan nomor pilihan Anda (1-4) : ");
+        System.out.println("[4] Tampilkan");
+        System.out.println("[5] Keluar");
+        System.out.print("Masukkan nomor pilihan Anda (1-5) : ");
     }
 
     public static void main(String[] args) {
@@ -40,8 +41,19 @@ public class MenuSederhana {
                     makanan = input.nextLine();
 
                 } else if (pilihan.equals("4")) {
-                    break;
+                    System.out.println("\n\n\n\n\n-------------------------------");
+                    System.out.println("Nama            : " + nama);
+                    System.out.println("Hobi            : " + hobi);
+                    System.out.println("Makanan favorit : " + makanan);
+                    System.out.println("-------------------------------\n");
 
+                    String p = input.nextLine();
+                    if (p.equals("a")) {
+
+                    }
+
+                } else if (pilihan.equals("5")) {
+                    break;
                 }
 
                 System.out.println("\n\n");
@@ -49,11 +61,5 @@ public class MenuSederhana {
                 System.out.println("\n\nAngka yang anda masukkan salah!");
             }
         }
-
-        System.out.println("-------------------------------");
-        System.out.println("Nama            : " + nama);
-        System.out.println("Hobi            : " + hobi);
-        System.out.println("Makanan favorit : " + makanan);
-        System.out.println("-------------------------------\n");
     }
 }
