@@ -1,17 +1,35 @@
 import java.util.Scanner;
 
 public class Pola {
-    private static Scanner input = new Scanner(System.in);
+    int dimension;
 
-    public static void main(String[] args) {
-        System.out.print("Masukkan jumlah dimensi pola : ");
-        int n = input.nextInt();
+    void setDimension(int dimension) {
+        this.dimension = dimension;
+    }
 
-        for (int i = 0; i < n; i++) {
-            for (int j = n; j > i; j--) {
+    int getDimension() {
+        return this.dimension;
+    }
+
+    void showStars() {
+        for (int i = 0; i < this.getDimension(); i++) {
+            for (int j = this.getDimension(); j > i; j--) {
                 System.out.print("*");
             }
             System.out.println();
         }
+    }
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        Pola p = new Pola();
+
+        System.out.print("Masukkan jumlah dimensi pola : ");
+        int dimension = input.nextInt();
+
+        p.setDimension(dimension);
+        p.showStars();
+
+        input.close();
     }
 }

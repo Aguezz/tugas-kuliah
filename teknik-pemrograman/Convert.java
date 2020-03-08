@@ -15,10 +15,11 @@ class Currency {
 }
 
 class Convert {
-    static int rupiah;
     static Scanner input = new Scanner(System.in);
-    static Currency currencySelected;
-    static Currency[] currencies = {
+
+    int rupiah;
+    Currency currencySelected;
+    Currency[] currencies = {
         new Currency(1, "Dollar", 13693.75),
         new Currency(2, "Riyal", 3651.53),
         new Currency(3, "Euro", 14831.50),
@@ -36,7 +37,7 @@ class Convert {
         outerLoop: {
             while (true) {
                 System.out.println("------------------");
-                for (Currency currency : currencies) {
+                for (Currency currency : this.currencies) {
                     System.out.format("[%d] %s\n", currency.id, currency.name);
                 }
                 System.out.println("------------------");
@@ -47,13 +48,13 @@ class Convert {
                 try {
                     int currencyId = Integer.parseInt(currencyIdString);
 
-                    if (currencyId > currencies.length || currencyId <= 0) {
+                    if (currencyId > this.currencies.length || currencyId <= 0) {
                         clearScreen();
                         System.out.println("Format angka salah!");
                     } else {
                         for (Currency currency : currencies) {
                             if (currency.id == currencyId) {
-                                currencySelected = currency;
+                                this.currencySelected = currency;
                                 break outerLoop;
                             }
                         }
@@ -75,9 +76,9 @@ class Convert {
             String rupiahString = input.nextLine();
 
             try {
-                rupiah = Integer.parseInt(rupiahString);
+                this.rupiah = Integer.parseInt(rupiahString);
 
-                if (rupiah <= 0) {
+                if (this.rupiah <= 0) {
                     clearScreen();
                     System.out.println("Angka yang diinputkan minimal 0");
                 } else {
@@ -92,8 +93,8 @@ class Convert {
 
     void hitung() {
         NumberFormat nf = NumberFormat.getInstance(new Locale("id", "ID"));
-        String prettyRupiah = nf.format(rupiah);
-        String prettyRiyal = nf.format(rupiah / currencySelected.value);
+        String prettyRupiah = nf.format(this.rupiah);
+        String prettyRiyal = nf.format(this.rupiah / currencySelected.value);
 
         System.out.format("\nRp %s dalam %s adalah‎ %s\n", prettyRupiah, currencySelected.name, prettyRiyal);
 

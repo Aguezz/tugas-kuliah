@@ -1,9 +1,33 @@
 import java.util.Scanner;
 
 public class MenuSederhana {
-    private static Scanner input = new Scanner(System.in);
+    String name, hobby, favoriteFood;
 
-    static void print() {
+    void setName(String name) {
+        this.name = name;
+    }
+
+    String getName() {
+        return this.name;
+    }
+
+    void setHobby(String hobby) {
+        this.hobby = hobby;
+    }
+
+    String getHobby() {
+        return this.hobby;
+    }
+
+    void setFavoriteFood(String favoriteFood) {
+        this.favoriteFood = favoriteFood;
+    }
+
+    String getFavoriteFood() {
+        return this.favoriteFood;
+    }
+
+    void printMenu() {
         System.out.println("---------------------");
         System.out.println("Menu Sederhana");
         System.out.println("---------------------");
@@ -15,51 +39,63 @@ public class MenuSederhana {
         System.out.print("Masukkan nomor pilihan Anda (1-5) : ");
     }
 
+    void showIdentity(Scanner input) {
+        clearConsole();
+        System.out.println("-------------------------------");
+        System.out.println("Nama            : " + this.name);
+        System.out.println("Hobi            : " + this.hobby);
+        System.out.println("Makanan favorit : " + this.favoriteFood);
+        System.out.println("-------------------------------\n");
+        System.out.println("Tekan [ENTER] untuk melanjutkan :\n");
+
+        input.nextLine();
+    }
+
     public static void main(String[] args) {
-        String nama = "";
-        String hobi = "";
-        String makanan = "";
+        clearConsole();
+        Scanner input = new Scanner(System.in);
+        MenuSederhana m = new MenuSederhana();
 
         while (true) {
-            print();
-            String pilihan = input.nextLine();
+            m.printMenu();
+            String select = input.nextLine();
 
-            if (pilihan.equals("1") || pilihan.equals("2") || pilihan.equals("3") || pilihan.equals("4")) {
-                if (pilihan.equals("1")) {
-                    System.out.println("\nIni menu no. " + pilihan);
-                    System.out.print("Nama saya : ");
-                    nama = input.nextLine();
+            System.out.println("\nIni menu no. " + select);
 
-                } else if (pilihan.equals("2")) {
-                    System.out.println("\nIni menu no. " + pilihan);
-                    System.out.print("Hobi saya : ");
-                    hobi = input.nextLine();
+            if (select.equals("1")) {
+                System.out.print("Nama saya : ");
+                m.setName(input.nextLine());
+                clearConsole();
 
-                } else if (pilihan.equals("3")) {
-                    System.out.println("\nIni menu no. " + pilihan);
-                    System.out.print("Makanan favorit saya : ");
-                    makanan = input.nextLine();
+            } else if (select.equals("2")) {
+                System.out.print("Hobi saya : ");
+                m.setHobby(input.nextLine());
+                clearConsole();
 
-                } else if (pilihan.equals("4")) {
-                    System.out.println("\n\n\n\n\n-------------------------------");
-                    System.out.println("Nama            : " + nama);
-                    System.out.println("Hobi            : " + hobi);
-                    System.out.println("Makanan favorit : " + makanan);
-                    System.out.println("-------------------------------\n");
+            } else if (select.equals("3")) {
+                System.out.print("Makanan favorit saya : ");
+                m.setFavoriteFood(input.nextLine());
+                clearConsole();
 
-                    String p = input.nextLine();
-                    if (p.equals("a")) {
+            } else if (select.equals("4")) {
+                clearConsole();
+                m.showIdentity(input);
+                clearConsole();
 
-                    }
+            } else if (select.equals("5")) {
+                break;
 
-                } else if (pilihan.equals("5")) {
-                    break;
-                }
-
-                System.out.println("\n\n");
             } else {
+                clearConsole();
                 System.out.println("\n\nAngka yang anda masukkan salah!");
             }
         }
+
+        input.close();
+    }
+
+    static void clearConsole() {
+        System.out.println("\033[H\033[2J");
+        System.out.flush();
     }
 }
