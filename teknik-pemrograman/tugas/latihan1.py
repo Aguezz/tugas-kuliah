@@ -1,11 +1,23 @@
-n = int(input("Input number : "))
+# '''
+# @author Agus Stiawan - H96219038
+# '''
+# n = int(input("Input number : "))
+# print("The first n natural number are :", n)
 
-print("The first n natural number are :", n)
+# sum = 0
+# for i in range(1, n+1):
+#     print(i)
+#     sum += i
 
-sum = 0
+# print("The sum of Natural Number upto", n, "terms :", sum)
 
+n = input("Input number : ")
+n = int(n)
+print("The first n natural number are : " + str(n))
+
+total = 0
 for i in range(1, n+1):
     print(i)
-    sum += i
+    total += i
 
-print("The sum of Natural Number upto 4 terms :", sum)
+print("The sum of Natural Number upto " + str(n) + " terms :" + str(total))

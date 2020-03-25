@@ -1,3 +1,6 @@
+'''
+@author Agus Stiawan - H96219038
+'''
 year = int(input("Input the year : "))
 
 x = (year % 4) == 0

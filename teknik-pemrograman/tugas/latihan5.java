@@ -1,6 +1,10 @@
 import java.util.Scanner;
 import java.lang.Math;
 
+/**
+ * @author Agus Stiawan - H96219038
+ */
+
 class latihan5 {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -21,10 +25,6 @@ class latihan5 {
         double A = Math.acos((a * a - b * b - c * c) / (-2 * b * c));
         double B = Math.acos((b * b - a * a - c * c) / (-2 * a * c));
         double C = Math.acos((c * c - b * b - a * a) / (-2 * a * b));
-        
-        System.out.println(A);
-        System.out.println(B);
-        System.out.println(C);
 
         A = Math.round(Math.toDegrees(A * 100));
         A = A / 100;

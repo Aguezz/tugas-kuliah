@@ -1,6 +1,10 @@
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+/**
+ * @author Agus Stiawan - H96219038
+ */
+
 class latihan6 {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);

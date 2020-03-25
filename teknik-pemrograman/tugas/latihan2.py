@@ -1,3 +1,6 @@
+'''
+@author Agus Stiawan - H96219038
+'''
 n = int(input("Input number of rows : "))
 
 for i in range(1, n+1):
