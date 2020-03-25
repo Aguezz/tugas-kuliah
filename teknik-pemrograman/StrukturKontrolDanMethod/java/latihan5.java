@@ -26,12 +26,9 @@ class latihan5 {
         double B = Math.acos((b * b - a * a - c * c) / (-2 * a * c));
         double C = Math.acos((c * c - b * b - a * a) / (-2 * a * b));
 
-        A = Math.round(Math.toDegrees(A * 100));
-        A = A / 100;
-        B = Math.round(Math.toDegrees(B * 100));
-        B = B / 100;
-        C = Math.round(Math.toDegrees(C * 100));
-        C = C / 100;
+        A = Math.round(Math.toDegrees(A * 100)) / 100.0;
+        B = Math.round(Math.toDegrees(B * 100)) / 100.0;
+        C = Math.round(Math.toDegrees(C * 100)) / 100.0;
 
         System.out.println("The three angles are " + A + " " + B + " " + C);
     }
