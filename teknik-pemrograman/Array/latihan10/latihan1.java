@@ -19,6 +19,6 @@ public class latihan1 {
             Arrays.sort(price[i]);
         }
 
-        System.out.println(Arrays.deepToString(price));
+        System.out.println(Arrays.toString(price[i]));
     }
 }
